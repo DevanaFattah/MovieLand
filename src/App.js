@@ -17,18 +17,10 @@ const App = () => {
 
         setMovies(data.Search);
     }
-
-    const handleSearch = (search) => {
-        setSearch(search);
-
-        setTimeout(() => {
-            search ? searchMovie(search) : searchMovie('superman')
-        }, 750);
-    }
     
     useEffect(() => {
-        searchMovie('superman')
-    }, []);
+        search ? searchMovie(search) : searchMovie('Superman');
+    }, [search]);
 
   return (
     <div className='app'>
@@ -39,14 +31,13 @@ const App = () => {
                 placeholder='Search Movies'
                 value={search}
                 onChange={
-                    e => handleSearch(e.target.value)
+                    e => setSearch(e.target.value)
                 }
             />
 
             <img 
                 src={searchIcon} 
                 alt='Glass' 
-                // onClick={searchInput(search)}
             />
         </div>
             {movies?.length > 0
